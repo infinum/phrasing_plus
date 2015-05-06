@@ -1,11 +1,10 @@
 module PhrasingPlus
   module ApplicationHelper
-
     # e.g. 300x300
     HEIGHT_AND_WIDTH_REGEX = /\d+x\d+/
     WIDTH_REGEX = /\d+/
-    DUMMY_BACKGROUND_COLOR = '7d857c'
-    DUMMY_TEXT_COLOR = 'dea9bb'
+    DUMMY_IMAGE_BG_COLOR = '7d857c'
+    DUMMY_IMAGE_COLOR = 'dea9bb'
 
     def phrasing_image_tag(key, options = {})
       phrasing_image = PhrasingImage.find_or_create_by(key: key)
@@ -15,6 +14,11 @@ module PhrasingPlus
                       else
                         dummy_url(options[:size])
                       end
+
+      if can_edit_phrases?
+        options[:class] ||= ''
+        options[:class] += ' phrasable-image'
+      end
 
       image_tag(image_source, options)
     end
@@ -32,7 +36,7 @@ module PhrasingPlus
     end
 
     def dummy_url(size)
-      "http://dummyimage.com/#{adjusted_image_size(size)}/#{DUMMY_BACKGROUND_COLOR}/#{DUMMY_TEXT_COLOR}.png"
+      "http://dummyimage.com/#{adjusted_image_size(size)}/#{DUMMY_IMAGE_BG_COLOR}/#{DUMMY_IMAGE_COLOR}.png"
     end
   end
 end

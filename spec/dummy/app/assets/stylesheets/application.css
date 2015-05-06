@@ -11,5 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require phrasing
+ *= require phrasing_plus
  *= require_self
  */
