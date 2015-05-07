@@ -1,3 +1,5 @@
+//= require jquery.remodal
+
 span.phrasable-image-wrapper{
   display:inline-block;
   position:relative;
@@ -7,19 +9,26 @@ span.phrasable-image-wrapper{
   }
 
   button{
-    width:100px;
-    height:30px;
+    width:140px;
+    height:35px;
     position:absolute;
     right:10px;
     top:10px;
     display: none;
+    border: 1px solid white;
+    color: white;
+    background: #898989;
+    font-size: 12px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
   }
 
   &.phrasable-on{
 
     .phrasable-image{
       // border: 1px solid black;
-      opacity: 0.5;
+      opacity: 0.8;
     }
 
     button{

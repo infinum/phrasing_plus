@@ -20,7 +20,7 @@ module PhrasingPlus
         options[:class] += ' phrasable-image'
 
         content_tag(:span, class: 'phrasable-image-wrapper') do
-          image_tag(image_source, options) + content_tag(:button, 'Edit this image')
+          image_tag(image_source, options) + content_tag(:button, 'Click to edit image')
         end
       else
         image_tag(image_source, options)
