@@ -10,6 +10,6 @@ Phrasing.isEditModeEnabled = function(){
 
 $(document).ready(function(){
   if(Phrasing.isEditModeEnabled()){
-    $('.phrasable-image').addClass('phrasable_on');
+    $('.phrasable-image-wrapper').addClass('phrasable-on');
   }
 });

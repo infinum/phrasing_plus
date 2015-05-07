@@ -1,4 +1,29 @@
-.phrasable-image.phrasable_on{
-  border: 1px solid black;
-  opacity: 0.5;
+span.phrasable-image-wrapper{
+  display:inline-block;
+  position:relative;
+
+  .phrasable-image{
+    position:relative;
+  }
+
+  button{
+    width:100px;
+    height:30px;
+    position:absolute;
+    right:10px;
+    top:10px;
+    display: none;
+  }
+
+  &.phrasable-on{
+
+    .phrasable-image{
+      // border: 1px solid black;
+      opacity: 0.5;
+    }
+
+    button{
+      display: block;
+    }
+  }
 }
