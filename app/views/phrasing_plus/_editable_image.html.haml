@@ -3,8 +3,9 @@
     = image_tag(image_source, options)
 
     = form_for(phrasing_image) do |f|
-      = f.label(:image, 'Click to edit image')
+      = f.label(:image, 'Click to edit image', class: 'edit-image')
       = f.file_field(:image)
+      = f.label(:discard_change, class: 'discard-change')
       = f.button('Save image')
 - else
   = image_tag(image_source, options)
