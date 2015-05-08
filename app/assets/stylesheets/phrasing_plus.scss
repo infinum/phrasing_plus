@@ -1,62 +1,72 @@
-span.phrasable-image-wrapper{
-  font-family: 'icomoon';
-  display:inline-block;
-  position:relative;
+span.phrasable-image-wrapper {
+  font-family: "icomoon";
 
-  .phrasable-image{
-    position:relative;
+  position: relative;
+
+  display: inline-block;
+
+  .phrasable-image {
+    position: relative;
   }
 
-  form{
-    right: 0px;
-    top: 0px;
+  form {
     position: absolute;
+    top: 0;
+    right: 0;
 
-    label{
-      font-family: 'icomoon';
+    label {
+      font-family: "icomoon";
+      font-size: 13px;
+      font-weight: 200;
+
       position: absolute;
-      width:180px;
+      top: 20px;
       right: 20px;
+
+      width: 180px;
+      padding: 12px 0;
+
       text-align: center;
-      padding: 12px 0px;
-      -webkit-border-radius: 35px;
-      -moz-border-radius: 35px;
-      border-radius: 35px;
-      border: 2px solid white;
+
       color: white;
+      border: 2px solid white;
+      -webkit-border-radius: 35px;
+         -moz-border-radius: 35px;
+              border-radius: 35px;
       background: #898989;
-      font-size: 13px;
-      font-weight: 200;
     }
 
-    input[type=file]{
+    input[type=file] {
       display: none;
     }
 
-    button[type=submit]{
-      font-family: 'icomoon';
-      top: 50px;
-      right: 20px;
+    button[type=submit] {
+      font-family: "icomoon";
+      font-size: 13px;
+      font-weight: 200;
+
       position: absolute;
-      width:181px;
+      top: 20px;
+      right: 20px;
+
+      display: none;
+
+      width: 181px;
       height: 40px;
-      font-size: 13px;
-      font-weight: 200;
+
       color: white;
-      background: #898989;
       border: 2px solid white;
       -webkit-border-radius: 35px;
-      -moz-border-radius: 35px;
-      border-radius: 35px;
-      display: none;
+         -moz-border-radius: 35px;
+              border-radius: 35px;
+      background: #56AE45;
     }
   }
 
-  &.phrasable-on{
-
-    .phrasable-image{
+  &.phrasable-on {
+    .phrasable-image {
       // border: 1px solid black;
-      opacity: 0.8;
+      opacity: .8;
     }
   }
 }
