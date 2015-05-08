@@ -1,0 +1,10 @@
+- if can_edit_phrases?
+  %span{ class: 'phrasable-image-wrapper' }
+    = image_tag(image_source, options)
+
+    = form_for(phrasing_image) do |f|
+      = f.label(:image, 'Click to edit image')
+      = f.file_field(:image)
+      = f.button('Save image')
+- else
+  = image_tag(image_source, options)

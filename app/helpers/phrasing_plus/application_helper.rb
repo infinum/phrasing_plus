@@ -18,13 +18,11 @@ module PhrasingPlus
       if can_edit_phrases?
         options[:class] ||= ''
         options[:class] += ' phrasable-image'
-
-        content_tag(:span, class: 'phrasable-image-wrapper') do
-          image_tag(image_source, options) + content_tag(:button, 'Click to edit image')
-        end
-      else
-        image_tag(image_source, options)
       end
+
+      render 'phrasing_plus/editable_image', phrasing_image: phrasing_image,
+                                             options: options,
+                                             image_source: image_source
     end
 
     private

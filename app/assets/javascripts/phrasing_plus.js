@@ -1,5 +1,3 @@
-//= require jquery.remodal.min
-
 var Phrasing = Phrasing || {};
 
 Phrasing.isEditModeEnabled = function(){
@@ -16,7 +14,6 @@ $(document).ready(function(){
   }
 
   $('.phrasable-image-wrapper button').on('click', function(){
-    options = {};
-    $('[data-remodal-id=phrasing-plus-modal]').remodal(options).open();
+
   });
 });
