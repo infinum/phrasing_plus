@@ -59,7 +59,6 @@ PhrasableImageWidget.prototype.revertToOriginal = function(){
   this.$image.removeData('original-src');
 };
 
-
 var generatePhrasableImageWidget = function($wrapper){
   return new PhrasableImageWidget({
     fileInput : $wrapper.find('input[type=file]')[0],
@@ -86,5 +85,22 @@ $(document).ready(function(){
     var phrasingImageWrapper = generatePhrasableImageWidget($(this).closest('.phrasable-image-wrapper'));
     phrasingImageWrapper.discardUploadedImage();
   });
+
+
+  $(".phrasable-image-wrapper form").submit(function() {
+    $.ajax({
+      type: "PUT",
+      url: $(this).attr('action'),
+      data: new FormData( this ),
+      processData: false,
+      contentType: false,
+      success: function(data)
+      {
+        debugger;
+      }
+     });
+    return false;
+  });
+
 });
 
