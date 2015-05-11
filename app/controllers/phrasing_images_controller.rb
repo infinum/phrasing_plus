@@ -8,7 +8,7 @@ class PhrasingImagesController < ActionController::Base
     if phrasing_image.save
       render json: phrasing_image, status: 200
     else
-      render status: 403
+      render json: { errors: phrasing_image.errors.values.first }, status: 403
     end
   end
 
