@@ -1,11 +1,10 @@
 - if can_edit_phrases?
-  %span{ class: 'phrasable-image-wrapper' }
-    = image_tag(image_source, options)
-
-    = form_for(phrasing_image) do |f|
+  %span{ image_widget.wrapper_options }
+    = image_tag(image_widget.image_url, image_widget.options)
+    = form_for(image_widget) do |f|
       = f.label(:image, 'Click to edit image', class: 'edit-image')
       = f.file_field(:image)
       = f.label(:discard_change, class: 'discard-change')
       = f.button('Save image')
 - else
-  = image_tag(image_source, options)
+  = image_tag(image_widget.image_url, image_widget.options)
