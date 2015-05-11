@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505165641) do
+ActiveRecord::Schema.define(version: 20150511151245) do
+
+  create_table "phrasing_images", force: :cascade do |t|
+    t.string   "key"
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "phrasing_phrase_versions", force: :cascade do |t|
     t.integer  "phrasing_phrase_id"
@@ -28,13 +35,6 @@ ActiveRecord::Schema.define(version: 20150505165641) do
     t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "phrasing_plus_phrasing_images", force: :cascade do |t|
-    t.string   "key"
-    t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

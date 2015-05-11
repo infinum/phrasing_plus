@@ -53,7 +53,7 @@ class DummyImage
   end
 
   def url
-    "http://dummyimage.com/#{size}/#{BG_COLOR}/#{COLOR}.png"
+    "http://placehold.it/#{size}/#{BG_COLOR}/#{COLOR}"
   end
 
   private

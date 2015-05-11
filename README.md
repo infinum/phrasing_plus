@@ -1,8 +1,10 @@
 # PhrasingPlus
 
-PhrasingPlus is extension for Phrasing. It's a mountable Rails engine used for inline editing of images.
+PhrasingPlus is a Phrasing extension image inline editing.
 
 ## Installation
+
+
 
 ### Add to Gemfile
 
@@ -13,7 +15,7 @@ gem 'phrasing_plus'
 ### Copy migrations
 
 ```shell
-rake phrasing_plus:install:migrations
+ rails g phrasing_plus
 ```
 
 ### Run migrations
@@ -21,7 +23,5 @@ rake phrasing_plus:install:migrations
 ```shell
 rake db:migrate
 ```
-
-
 
 This project rocks and uses MIT-LICENSE.
