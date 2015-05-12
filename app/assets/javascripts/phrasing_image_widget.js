@@ -1,96 +1,96 @@
 function PhrasingImageWidget(options){
-  this.fileInput = options.fileInput;
-  this.$fileInputLabel = options.$fileInputLabel;
-  this.$discardChangeLabel = options.$discardChangeLabel;
-  this.$wrapper = options.$wrapper;
-  this.$image = options.$image;
-  this.$form = options.$form;
-  this.$submitButton = options.$submitButton;
-}
+  var fileInput = options.fileInput;
+  var $fileInputLabel = options.$fileInputLabel;
+  var $discardChangeLabel = options.$discardChangeLabel;
+  var $wrapper = options.$wrapper;
+  var $image = options.$image;
+  var $form = options.$form;
+  var $submitButton = options.$submitButton;
 
-PhrasingImageWidget.prototype.showChosenImage = function(){
-  this.rememberOriginalImage();
-  this.setChosenImageAsSource();
-  this.$fileInputLabel.hide();
-  this.$discardChangeLabel.show();
-  this.$submitButton.show();
-};
+  var showChosenImage = function(){
+    rememberOriginalImage();
+    setChosenImageAsSource();
+    $fileInputLabel.hide();
+    $discardChangeLabel.show();
+    $submitButton.show();
+  };
 
-PhrasingImageWidget.prototype.setChosenImageAsSource = function(){
-  if (this.fileInput.files && this.fileInput.files[0]) {
-    var reader = new FileReader();
-    var widget = this;
-    reader.onload = function (e) {
-      widget.$image.attr('src', e.target.result);
-    };
-    reader.readAsDataURL(this.fileInput.files[0]);
-  }
-};
-
-PhrasingImageWidget.prototype.rememberOriginalImage = function(){
-  this.$image.data('original-src', this.$image.attr('src'));
-};
-
-PhrasingImageWidget.prototype.discardChosenImage = function(){
-  this.revertImageToOriginal();
-  this.$form[0].reset();
-  this.$fileInputLabel.show();
-  this.$discardChangeLabel.hide();
-  this.$submitButton.hide();
-};
-
-PhrasingImageWidget.prototype.revertImageToOriginal = function(){
-  this.$image.attr('src', this.$image.data('original-src'));
-  this.$image.removeData('original-src');
-};
-
-PhrasingImageWidget.prototype.uploadChosenImage = function(){
-  var widget = this;
-
-  $.ajax({
-    type: "PUT",
-    url: widget.$form.attr('action'),
-    data: new FormData( widget.$form[0] ),
-    processData: false,
-    contentType: false,
-    success: function(data)
-    {
-      widget.handleSuccessfullUpload(data);
-    },
-    error: function(data){
-      widget.handleFailedUpload(data);
+  var setChosenImageAsSource = function(){
+    if (fileInput.files && fileInput.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $image.attr('src', e.target.result);
+      };
+      reader.readAsDataURL(fileInput.files[0]);
     }
-   });
-};
+  };
 
-PhrasingImageWidget.prototype.handleSuccessfullUpload = function(data){
-  this.$form[0].reset();
-  this.addNewSrcToImage(data.image.url);
-  this.$fileInputLabel.show();
-  this.$discardChangeLabel.hide();
-  this.$submitButton.hide();
-  this.showSuccessNotification(data);
-};
+  var rememberOriginalImage = function(){
+    $image.data('original-src', $image.attr('src'));
+  };
 
-PhrasingImageWidget.prototype.showSuccessNotification = function(data){
-  alert('Image successfully updated');
-};
+  var discardChosenImage = function(){
+    revertImageToOriginal();
+    $form[0].reset();
+    $fileInputLabel.show();
+    $discardChangeLabel.hide();
+    $submitButton.hide();
+  };
 
-PhrasingImageWidget.prototype.addNewSrcToImage = function(imgSrc){
-  this.$image.attr('src', imgSrc);
-  this.$image.removeData('original-src');
-};
+  var revertImageToOriginal = function(){
+    $image.attr('src', $image.data('original-src'));
+    $image.removeData('original-src');
+  };
 
-PhrasingImageWidget.prototype.handleFailedUpload = function(data){
-  this.$form[0].reset();
-  this.revertImageToOriginal();
-  this.$fileInputLabel.show();
-  this.$discardChangeLabel.hide();
-  this.$submitButton.hide();
-  this.showFailureNotification(data);
-};
+  var uploadChosenImage = function(){
+    $.ajax({
+      type: "PUT",
+      url: $form.attr('action'),
+      data: new FormData( $form[0] ),
+      processData: false,
+      contentType: false,
+      success: function(data)
+      {
+        handleSuccessfullUpload(data);
+      },
+      error: function(data){
+        handleFailedUpload(data);
+      }
+     });
+  };
 
-PhrasingImageWidget.prototype.showFailureNotification = function(data){
-  alert(data.responseJSON.errors);
-};
+  var handleSuccessfullUpload = function(data){
+    $form[0].reset();
+    addNewSrcToImage(data.image.url);
+    $fileInputLabel.show();
+    $discardChangeLabel.hide();
+    $submitButton.hide();
+    showSuccessNotification(data);
+  };
 
+  var showSuccessNotification = function(data){
+    alert('Image successfully updated');
+  };
+
+  var addNewSrcToImage = function(imgSrc){
+    $image.attr('src', imgSrc);
+    $image.removeData('original-src');
+  };
+
+  var handleFailedUpload = function(data){
+    $form[0].reset();
+    revertImageToOriginal();
+    $fileInputLabel.show();
+    $discardChangeLabel.hide();
+    $submitButton.hide();
+    showFailureNotification(data);
+  };
+
+  var showFailureNotification = function(data){
+    alert(data.responseJSON.errors);
+  };
+
+  return { showChosenImage: showChosenImage,
+           discardChosenImage: discardChosenImage,
+           uploadChosenImage: uploadChosenImage };
+}

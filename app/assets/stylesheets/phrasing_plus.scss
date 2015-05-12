@@ -9,7 +9,7 @@ span.phrasable-image-wrapper {
     position: relative;
   }
 
-  form {
+  form.phrasing-image-edit-form {
     position: absolute;
     top: 0;
     right: 0;
@@ -34,22 +34,22 @@ span.phrasable-image-wrapper {
               border-radius: 35px;
     }
 
-    label.edit-image {
+    label.phrasing-image-edit-label {
       top: 20px;
       background: #898989;
     }
 
-    label.discard-change{
+    label.phrasing-image-discard-change-label{
       top: 65px;
       background: #F1A515;
       display: none;
     }
 
-    input[type=file] {
+    .phrasing-image-file-input {
       display: none;
     }
 
-    button[type=submit] {
+    .phrasing-image-submit-button {
       font-family: "icomoon";
       font-size: 13px;
       font-weight: 200;

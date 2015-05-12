@@ -1,10 +1,10 @@
 - if can_edit_phrases?
   %span{ image_widget.wrapper_options }
     = image_tag(image_widget.image_url, image_widget.options)
-    = form_for(image_widget) do |f|
-      = f.label(:image, 'Click to edit image', class: 'edit-image')
-      = f.file_field(:image)
-      = f.label(:discard_change, class: 'discard-change')
-      = f.button('Save image')
+    = form_for(image_widget, html: { class: 'phrasing-image-edit-form'}) do |f|
+      = f.label(:image, 'Click to edit image', class: 'phrasing-image-edit-label')
+      = f.file_field(:image, class: 'phrasing-image-file-input')
+      = f.label(:discard_change, class: 'phrasing-image-discard-change-label')
+      = f.button('Save image', class: 'phrasing-image-submit-button')
 - else
   = image_tag(image_widget.image_url, image_widget.options)

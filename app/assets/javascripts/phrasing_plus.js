@@ -12,17 +12,27 @@ Phrasing.isEditModeEnabled = function(){
   return $.cookie("editing_mode") === "true" ? true : false;
 };
 
-// PhrasableImageWidgetFactory
 var generatePhrasingImageWidget = function($wrapper){
   return new PhrasingImageWidget({
-    fileInput : $wrapper.find('input[type=file]')[0],
-    $fileInputLabel : $wrapper.find('label.edit-image'),
-    $discardChangeLabel : $wrapper.find('label.discard-change'),
+    fileInput : $wrapper.find('.phrasing-image-file-input')[0],
+    $fileInputLabel : $wrapper.find('.phrasing-image-edit-label'),
+    $discardChangeLabel : $wrapper.find('.phrasing-image-discard-change-label'),
     $wrapper : $wrapper,
     $image : $wrapper.find('img.phrasable-image'),
-    $form : $wrapper.find('form'),
-    $submitButton : $wrapper.find('button[type=submit]')
+    $form : $wrapper.find('.phrasing-image-edit-form'),
+    $submitButton : $wrapper.find('.phrasing-image-submit-button')
   });
+};
+
+var fetchPhrasingImageWidget = function($wrapper){
+  var widget = $wrapper.data('widget');
+
+  if(widget === undefined){
+    widget = generatePhrasingImageWidget($wrapper);
+    $wrapper.data('widget', widget);
+  }
+
+  return widget;
 };
 
 $(document).ready(function(){
@@ -30,31 +40,20 @@ $(document).ready(function(){
     $('.phrasable-image-wrapper').addClass('phrasable-on');
   }
 
-  $('.phrasable-image-wrapper input[type=file]').change(function(){
-    var phrasingImageWrapper = generatePhrasingImageWidget($(this).closest('.phrasable-image-wrapper'));
-    phrasingImageWrapper.showChosenImage();
+  $('.phrasable-image-wrapper .phrasing-image-file-input').change(function(){
+    var phrasingImageWidget = fetchPhrasingImageWidget($(this).closest('.phrasable-image-wrapper'));
+    phrasingImageWidget.showChosenImage();
   });
 
-  $('.phrasable-image-wrapper label.discard-change').on('click', function(){
-    var phrasingImageWrapper = generatePhrasingImageWidget($(this).closest('.phrasable-image-wrapper'));
-    phrasingImageWrapper.discardChosenImage();
+  $('.phrasable-image-wrapper .phrasing-image-discard-change-label').on('click', function(){
+    var phrasingImageWidget = fetchPhrasingImageWidget($(this).closest('.phrasable-image-wrapper'));
+    phrasingImageWidget.discardChosenImage();
   });
 
-  $(".phrasable-image-wrapper form").submit(function(e) {
-    var phrasingImageWrapper = generatePhrasingImageWidget($(this).closest('.phrasable-image-wrapper'));
-    phrasingImageWrapper.uploadChosenImage();
+  $(".phrasable-image-wrapper .phrasing-image-edit-form").submit(function(e) {
+    var phrasingImageWidget = fetchPhrasingImageWidget($(this).closest('.phrasable-image-wrapper'));
+    phrasingImageWidget.uploadChosenImage();
     e.preventDefault();
   });
 
-  // $('.phrasable-image-wrapper img').animate({
-  //   opacity: 0.4,
-  // }, 2000, function() {
-  //   $(this).animate({
-  //     opacity: 1
-  //   });
-  // });
-
 });
-
-
-
