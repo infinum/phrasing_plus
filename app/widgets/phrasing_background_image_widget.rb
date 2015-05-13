@@ -4,13 +4,14 @@ class PhrasingBackgroundImageWidget < SimpleDelegator
 
   HTML_CLASS = 'phrasable-background-image'
 
-  attr_accessor :options
+  attr_accessor :options, :wrapped_html
 
-  def initialize(phrasing_image, view_context, options = {})
+  def initialize(phrasing_image, view_context, options = {}, wrapped_html)
     super(phrasing_image)
     @view_context = view_context
     @options = options
     @tag = options.delete(:tag)
+    @wrapped_html = wrapped_html
 
     return unless view_context.can_edit_phrases?
 

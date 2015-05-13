@@ -1,3 +1,4 @@
 = content_tag(widget.tag, widget.options) do
   - if can_edit_phrases?
     = render 'phrasing_plus/form', widget: widget
+  = widget.wrapped_html
