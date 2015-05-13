@@ -28,19 +28,11 @@ class PhrasingImageWidget < SimpleDelegator
   attr_accessor :view_context
 
   def add_phrasable_image_class
-    if options[:class].present?
-      options[:class] += ' ' + HTML_CLASS
-    else
-      options[:class] = HTML_CLASS
-    end
+    options[:class] = [options[:class], HTML_CLASS].compact.join(' ')
   end
 
   def add_phrasable_image_wrapper_class
-    if wrapper_options[:class].present?
-      wrapper_options[:class] += ' ' + WRAPPER_HTML_CLASS
-    else
-      wrapper_options[:class] = WRAPPER_HTML_CLASS
-    end
+    wrapper_options[:class] = [wrapper_options[:class], WRAPPER_HTML_CLASS].compact.join(' ')
   end
 
 end

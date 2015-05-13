@@ -32,11 +32,7 @@ class PhrasingBackgroundImageWidget < SimpleDelegator
   attr_accessor :view_context
 
   def add_phrasable_image_class
-    if options[:class].present?
-      options[:class] += ' ' + HTML_CLASS
-    else
-      options[:class] = HTML_CLASS
-    end
+    options[:class] = [options[:class], HTML_CLASS].compact.join(' ')
   end
 
   def add_image_to_style
