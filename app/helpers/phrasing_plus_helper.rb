@@ -8,7 +8,7 @@ module PhrasingPlusHelper
   def phrasing_background_image_tag(key, options = {}, &block)
     image = PhrasingImage.find_or_create_by(key: key)
     wrapped_html = capture(&block) if block_given?
-    image_widget = PhrasingBackgroundImageWidget.new(image, self, options, wrapped_html)
+    image_widget = PhrasingBackgroundImageWidget.new(image, self, wrapped_html, options)
     render 'phrasing_plus/editable_background_image', widget: image_widget
   end
 end
