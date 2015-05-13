@@ -1,26 +1,29 @@
 require 'phrasing_plus/dummy_image'
 
-class PhrasingImageWidget < SimpleDelegator
+class PhrasingBackgroundImageWidget < SimpleDelegator
 
-  HTML_CLASS = 'phrasable-image'
-  WRAPPER_HTML_CLASS = 'phrasable-image-wrapper'
+  HTML_CLASS = 'phrasable-background-image'
 
-  attr_accessor :options, :wrapper_options
+  attr_accessor :options
 
   def initialize(phrasing_image, view_context, options = {})
     super(phrasing_image)
     @view_context = view_context
     @options = options
-    @wrapper_options = @options.delete(:wrapper_html) || {}
+    @tag = options.delete(:tag)
 
     return unless view_context.can_edit_phrases?
 
     add_phrasable_image_class
-    add_phrasable_image_wrapper_class
+    add_image_to_style
   end
 
   def image_url
     image.url || PhrasingPlus::DummyImage.new(options).url
+  end
+
+  def tag
+    @tag || :div
   end
 
   private
@@ -35,12 +38,7 @@ class PhrasingImageWidget < SimpleDelegator
     end
   end
 
-  def add_phrasable_image_wrapper_class
-    if wrapper_options[:class].present?
-      wrapper_options[:class] += ' ' + WRAPPER_HTML_CLASS
-    else
-      wrapper_options[:class] = WRAPPER_HTML_CLASS
-    end
+  def add_image_to_style
+    options[:style] = "background-image: url(#{image_url})"
   end
-
 end

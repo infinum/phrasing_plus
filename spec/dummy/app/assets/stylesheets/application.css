@@ -15,3 +15,8 @@
  *= require phrasing_plus
  *= require_self
  */
+
+.neat-image{
+  width: 300px;
+  height: 300px;
+}

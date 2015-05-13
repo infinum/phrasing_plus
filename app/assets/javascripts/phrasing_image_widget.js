@@ -7,6 +7,22 @@ function PhrasingImageWidget(options){
   var $form = options.$form;
   var $submitButton = options.$submitButton;
 
+  var getImageSrc = function(){
+    if($image.size() !== 0){
+      $image.attr('src');
+    }else{
+      $wrapper.css('background-image');
+    }
+  };
+
+  var setImageSrc = function(src){
+    if($image.size() !== 0){
+      $image.attr('src', src);
+    }else{
+      $wrapper.css('background-image', src);
+    }
+  };
+
   var showChosenImage = function(){
     rememberOriginalImage();
     setChosenImageAsSource();
@@ -19,14 +35,18 @@ function PhrasingImageWidget(options){
     if (fileInput.files && fileInput.files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
-        $image.attr('src', e.target.result);
+        if($image.size() !== 0){
+          setImageSrc(e.target.result);
+        }else{
+          setImageSrc('url(' + e.target.result + ')');
+        }
       };
       reader.readAsDataURL(fileInput.files[0]);
     }
   };
 
   var rememberOriginalImage = function(){
-    $image.data('original-src', $image.attr('src'));
+    $wrapper.data('original-src', getImageSrc());
   };
 
   var discardChosenImage = function(){
@@ -38,8 +58,8 @@ function PhrasingImageWidget(options){
   };
 
   var revertImageToOriginal = function(){
-    $image.attr('src', $image.data('original-src'));
-    $image.removeData('original-src');
+    setImageSrc($wrapper.data('original-src'));
+    $wrapper.removeData('original-src');
   };
 
   var uploadChosenImage = function(){
@@ -73,8 +93,12 @@ function PhrasingImageWidget(options){
   };
 
   var addNewSrcToImage = function(imgSrc){
-    $image.attr('src', imgSrc);
-    $image.removeData('original-src');
+    if($image.size() !== 0){
+      setImageSrc(imgSrc);
+    }else{
+      setImageSrc('url(' + imgSrc + ')');
+    }
+    $wrapper.removeData('original-src');
   };
 
   var handleFailedUpload = function(data){

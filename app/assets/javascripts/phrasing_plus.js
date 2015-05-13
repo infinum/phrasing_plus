@@ -37,21 +37,21 @@ var fetchPhrasingImageWidget = function($wrapper){
 
 $(document).ready(function(){
   if(Phrasing.isEditModeEnabled()){
-    $('.phrasable-image-wrapper').addClass('phrasable-on');
+    $('.phrasable-image-wrapper, .phrasable-background-image').addClass('phrasable-on');
   }
 
-  $('.phrasable-image-wrapper .phrasing-image-file-input').change(function(){
-    var phrasingImageWidget = fetchPhrasingImageWidget($(this).closest('.phrasable-image-wrapper'));
+  $('.phrasing-image-file-input').change(function(){
+    var phrasingImageWidget = fetchPhrasingImageWidget($(this).closest('.phrasable-image-wrapper, .phrasable-background-image'));
     phrasingImageWidget.showChosenImage();
   });
 
-  $('.phrasable-image-wrapper .phrasing-image-discard-change-label').on('click', function(){
-    var phrasingImageWidget = fetchPhrasingImageWidget($(this).closest('.phrasable-image-wrapper'));
+  $('.phrasing-image-discard-change-label').on('click', function(){
+    var phrasingImageWidget = fetchPhrasingImageWidget($(this).closest('.phrasable-image-wrapper, .phrasable-background-image'));
     phrasingImageWidget.discardChosenImage();
   });
 
-  $(".phrasable-image-wrapper .phrasing-image-edit-form").submit(function(e) {
-    var phrasingImageWidget = fetchPhrasingImageWidget($(this).closest('.phrasable-image-wrapper'));
+  $(".phrasing-image-edit-form").submit(function(e) {
+    var phrasingImageWidget = fetchPhrasingImageWidget($(this).closest('.phrasable-image-wrapper, .phrasable-background-image'));
     phrasingImageWidget.uploadChosenImage();
     e.preventDefault();
   });

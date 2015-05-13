@@ -1,15 +1,6 @@
-span.phrasable-image-wrapper {
-  font-family: "icomoon";
-
-  position: relative;
-
-  display: inline-block;
-
-  .phrasable-image {
-    position: relative;
-  }
-
+.phrasing-image-holder{
   form.phrasing-image-edit-form {
+    display: none;
     position: absolute;
     top: 0;
     right: 0;
@@ -72,10 +63,30 @@ span.phrasable-image-wrapper {
     }
   }
 
+  &.phrasable-on{
+    .phrasing-image-edit-form{
+      display: block;
+    }
+  }
+}
+
+span.phrasable-image-wrapper{
+  @extend .phrasing-image-holder;
+  position: relative;
+  display: inline-block;
+
+  .phrasable-image {
+    position: relative;
+  }
+
   &.phrasable-on {
     .phrasable-image {
-      // border: 1px solid black;
       opacity: .8;
     }
   }
+}
+
+.phrasable-background-image{
+  @extend .phrasing-image-holder;
+  position: relative;
 }
