@@ -1,17 +1,4 @@
 //=require phrasing_image_widget
-
-var Phrasing = Phrasing || {};
-
-var PhrasingPlus = PhrasingPlus || {};
-
-Phrasing.isEditModeEnabled = function(){
-  if($.cookie('editing_mode') === null){
-    $.cookie('editing_mode', 'true');
-  }
-
-  return $.cookie("editing_mode") === "true" ? true : false;
-};
-
 var generatePhrasingImageWidget = function($wrapper){
   return new PhrasingImageWidget({
     fileInput : $wrapper.find('.phrasing-image-file-input')[0],
@@ -39,6 +26,14 @@ $(document).ready(function(){
   if(Phrasing.isEditModeEnabled()){
     $('.phrasable-image-wrapper, .phrasable-background-image').addClass('phrasable-on');
   }
+
+  Phrasing.Bus.on('phrasing:edit-mode:on', function(){
+    $('.phrasable-image-wrapper, .phrasable-background-image').addClass('phrasable-on');
+  });
+
+  Phrasing.Bus.on('phrasing:edit-mode:off', function(){
+    $('.phrasable-image-wrapper, .phrasable-background-image').removeClass('phrasable-on');
+  });
 
   $('.phrasing-image-file-input').change(function(){
     var phrasingImageWidget = fetchPhrasingImageWidget($(this).closest('.phrasable-image-wrapper, .phrasable-background-image'));
