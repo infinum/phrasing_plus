@@ -11,7 +11,7 @@ class PhrasingBackgroundImageWidget < SimpleDelegator
     @view_context = view_context
     @wrapped_html = wrapped_html
     @options = options
-    @options.merge(style: "background-image: url(#{image_url})")
+    @options[:style] = "background-image: url(#{image_url})"
     @tag = @options.delete(:tag)
 
     return unless view_context.can_edit_phrases?
