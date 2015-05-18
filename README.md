@@ -24,6 +24,19 @@ gem 'phrasing_plus'
 rake db:migrate
 ```
 
+### Include the required **javascript** file:
+
+```javascript
+//= require phrasing
+```
+
+### Include the required **stylesheet** file:
+
+```css
+*= require phrasing
+```
+
+
 ### Usage
 
 PhrasingPlus can change images in two ways - simple image tags and background images.
