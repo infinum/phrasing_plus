@@ -1,5 +1,6 @@
-= form_for(widget, html: { class: 'phrasing-image-edit-form'}) do |f|
-  = f.label(:image, 'Click to edit image', class: 'phrasing-image-edit-label', for: "phrasing_image_image_#{widget.id}")
-  = f.file_field(:image, class: 'phrasing-image-file-input', id: "phrasing_image_image_#{widget.id}")
-  = f.label(:discard_change, class: 'phrasing-image-discard-change-label')
-  = f.button('Save image', class: 'phrasing-image-submit-button')
+.phrasing-image-form-container
+  = form_for(widget, html: { class: 'phrasing-image-edit-form'}) do |f|
+    = f.label(:image, 'Click to edit image', class: 'phrasing-image-edit-label', for: "phrasing_image_image_#{widget.id}")
+    = f.file_field(:image, class: 'phrasing-image-file-input', id: "phrasing_image_image_#{widget.id}")
+    = f.button('Save image', class: 'phrasing-image-submit-button')
+    = f.label(:discard_change, class: 'phrasing-image-discard-change-label')

@@ -1,92 +1,106 @@
-.phrasing-image-holder{
-  form.phrasing-image-edit-form {
+$phrasing-image-font-family: "icomoon";
+$phrasing-image-font-size: 13px;
+$phrasing-image-font-weight: 200;
+
+$phrasing-image-btn-color: #FFFFFF;
+
+$phrasing-image-btn-width: 180px;
+$phrasing-image-line-height: 35px;
+
+$phrasing-image-border-width: 2px;
+$phrasing-image-border-color: #FFFFFF;
+$phrasing-image-btn-border-radius: 35px;
+
+$phrasing-image-btn-edit-background: #898989;
+$phrasing-image-btn-discard-chage-background: #F1A515;
+$phrasing-image-btn-submit-background: #56AE45;
+
+%phrasing-image-button-style {
+  padding: 0;
+  margin-bottom: 10px;
+
+  cursor: pointer;
+
+  display: block;
+
+  font: {
+    family: $phrasing-image-font-family;
+    size: $phrasing-image-font-size;
+    weight: $phrasing-image-font-weight;
+  }
+
+  text-align: center;
+  color: $phrasing-image-btn-color;
+
+  width: $phrasing-image-btn-width;
+  line-height: $phrasing-image-line-height;
+
+  border: {
+    width: $phrasing-image-border-width;
+    style: solid;
+    color: $phrasing-image-border-color;
+  }
+  -webkit-border-radius: $phrasing-image-btn-border-radius;
+     -moz-border-radius: $phrasing-image-btn-border-radius;
+          border-radius: $phrasing-image-btn-border-radius;
+}
+
+%phrasing-image-holder{
+
+  &.phrasable-on .phrasing-image-edit-form{
+    display: block;
+  }
+
+  .phrasing-image-edit-form {
     display: none;
     position: absolute;
     top: 0;
     right: 0;
 
-    label{
-      font-family: "icomoon";
-      font-size: 13px;
-      font-weight: 200;
-
-      position: absolute;
-      right: 20px;
-
-      width: 180px;
-      padding: 12px 0;
-
-      text-align: center;
-
-      color: white;
-      border: 2px solid white;
-      -webkit-border-radius: 35px;
-         -moz-border-radius: 35px;
-              border-radius: 35px;
-    }
-
-    label.phrasing-image-edit-label {
-      top: 20px;
-      background: #898989;
-    }
-
-    label.phrasing-image-discard-change-label{
-      top: 65px;
-      background: #F1A515;
-      display: none;
-    }
+    padding: 20px;
 
     .phrasing-image-file-input {
       display: none;
     }
 
-    .phrasing-image-submit-button {
-      font-family: "icomoon";
-      font-size: 13px;
-      font-weight: 200;
+    .phrasing-image-edit-label {
+      @extend %phrasing-image-button-style;
 
-      position: absolute;
-      top: 20px;
-      right: 20px;
+      background-color: $phrasing-image-btn-edit-background;
+    }
+
+    .phrasing-image-discard-change-label{
+      @extend %phrasing-image-button-style;
 
       display: none;
 
-      width: 181px;
-      height: 42px;
-
-      color: white;
-      border: 2px solid white;
-      -webkit-border-radius: 35px;
-         -moz-border-radius: 35px;
-              border-radius: 35px;
-      background: #56AE45;
+      background-color: $phrasing-image-btn-discard-chage-background;
     }
-  }
 
-  &.phrasable-on{
-    .phrasing-image-edit-form{
-      display: block;
+    .phrasing-image-submit-button {
+      @extend %phrasing-image-button-style;
+
+      display: none;
+
+      background-color: $phrasing-image-btn-submit-background;
     }
   }
 }
 
-span.phrasable-image-wrapper{
-  @extend .phrasing-image-holder;
-  position: relative;
+.phrasable-image-wrapper{
+  @extend %phrasing-image-holder;
   display: inline-block;
 
   .phrasable-image {
     position: relative;
   }
-
-  &.phrasable-on {
-    .phrasable-image {
-      opacity: .8;
-    }
-  }
 }
 
 .phrasable-background-image{
-  @extend .phrasing-image-holder;
+  @extend %phrasing-image-holder;
+}
+
+.phrasing-image-form-container {
   position: relative;
+  z-index: 255;
 }

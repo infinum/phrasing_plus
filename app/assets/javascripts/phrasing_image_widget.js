@@ -7,11 +7,23 @@ function PhrasingImageWidget(options){
   var $form = options.$form;
   var $submitButton = options.$submitButton;
 
+  var showSaveDiscardButtons = function() {
+    $fileInputLabel.hide();
+    $discardChangeLabel.css('display', 'block');
+    $submitButton.css('display', 'block');
+  };
+
+  var hideSaveDiscardButtons = function() {
+    $fileInputLabel.css('display', 'block');
+    $discardChangeLabel.hide();
+    $submitButton.hide();
+  };
+
   var getImageSrc = function(){
     if($image.size() !== 0){
-      $image.attr('src');
+      return $image.attr('src');
     }else{
-      $wrapper.css('background-image');
+      return $wrapper.css('background-image');
     }
   };
 
@@ -26,9 +38,7 @@ function PhrasingImageWidget(options){
   var showChosenImage = function(){
     rememberOriginalImage();
     setChosenImageAsSource();
-    $fileInputLabel.hide();
-    $discardChangeLabel.show();
-    $submitButton.show();
+    showSaveDiscardButtons();
   };
 
   var setChosenImageAsSource = function(){
@@ -51,10 +61,8 @@ function PhrasingImageWidget(options){
 
   var discardChosenImage = function(){
     revertImageToOriginal();
-    $form[0].reset();
-    $fileInputLabel.show();
-    $discardChangeLabel.hide();
-    $submitButton.hide();
+    $form.get(0).reset();
+    hideSaveDiscardButtons();
   };
 
   var revertImageToOriginal = function(){
@@ -64,27 +72,24 @@ function PhrasingImageWidget(options){
 
   var uploadChosenImage = function(){
     $.ajax({
-      type: "PUT",
+      type: 'PUT',
       url: $form.attr('action'),
       data: new FormData( $form[0] ),
       processData: false,
       contentType: false,
-      success: function(data)
-      {
+      success: function(data) {
         handleSuccessfullUpload(data);
       },
-      error: function(data){
+      error: function(data) {
         handleFailedUpload(data);
       }
      });
   };
 
   var handleSuccessfullUpload = function(data){
-    $form[0].reset();
+    $form.get(0).reset();
     addNewSrcToImage(data.image.url);
-    $fileInputLabel.show();
-    $discardChangeLabel.hide();
-    $submitButton.hide();
+    hideSaveDiscardButtons();
     showSuccessNotification(data);
   };
 
@@ -102,11 +107,9 @@ function PhrasingImageWidget(options){
   };
 
   var handleFailedUpload = function(data){
-    $form[0].reset();
+    $form.get(0).reset();
     revertImageToOriginal();
-    $fileInputLabel.show();
-    $discardChangeLabel.hide();
-    $submitButton.hide();
+    hideSaveDiscardButtons();
     showFailureNotification(data);
   };
 

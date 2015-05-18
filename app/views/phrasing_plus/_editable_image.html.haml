@@ -1,4 +1,4 @@
 %span{ widget.wrapper_options }
-  = image_tag(widget.image_url, widget.options)
   - if can_edit_phrases?
     = render 'phrasing_plus/form', widget: widget
+  = image_tag(widget.image_url, widget.options)
