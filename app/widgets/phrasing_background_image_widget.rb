@@ -26,6 +26,8 @@ class PhrasingBackgroundImageWidget < SimpleDelegator
 
   private
 
+  attr_accessor :view_context
+
   def image_url
     image.url || default_image && view_context.asset_url(default_image) || PhrasingPlus::DummyImage.new(options).url
   end
