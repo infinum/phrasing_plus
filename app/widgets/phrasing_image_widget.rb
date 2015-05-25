@@ -5,12 +5,13 @@ class PhrasingImageWidget < SimpleDelegator
   HTML_CLASS = 'phrasable-image'
   WRAPPER_HTML_CLASS = 'phrasable-image-wrapper'
 
-  attr_accessor :options, :wrapper_options
+  attr_accessor :options, :wrapper_options, :default_image
 
   def initialize(phrasing_image, view_context, options = {})
     super(phrasing_image)
     @view_context = view_context
     @options = options
+    @default_image = @options.delete(:default_image)
     @wrapper_options = @options.delete(:wrapper_html) || {}
 
     return unless view_context.can_edit_phrases?
@@ -20,7 +21,7 @@ class PhrasingImageWidget < SimpleDelegator
   end
 
   def image_url
-    image.url || PhrasingPlus::DummyImage.new(options).url
+    image.url || default_image && view_context.asset_url(default_image) || PhrasingPlus::DummyImage.new(options).url
   end
 
   private

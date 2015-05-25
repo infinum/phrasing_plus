@@ -11,6 +11,7 @@ class PhrasingBackgroundImageWidget < SimpleDelegator
     @view_context = view_context
     @wrapped_html = wrapped_html
     @options = options
+    @default_image = @options.delete(:default_image)
     @options[:style] = "background-image: url(#{image_url})"
     @tag = @options.delete(:tag)
 
@@ -26,7 +27,7 @@ class PhrasingBackgroundImageWidget < SimpleDelegator
   private
 
   def image_url
-    image.url || PhrasingPlus::DummyImage.new(options).url
+    image.url || default_image && view_context.asset_url(default_image) || PhrasingPlus::DummyImage.new(options).url
   end
 
   def add_phrasable_image_class
