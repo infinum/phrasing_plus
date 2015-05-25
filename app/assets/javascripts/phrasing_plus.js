@@ -2,12 +2,12 @@
 var generatePhrasingImageWidget = function($wrapper){
   return new PhrasingImageWidget({
     fileInput : $wrapper.find('.phrasing-image-file-input')[0],
-    $fileInputLabel : $wrapper.find('.phrasing-image-edit-label'),
-    $discardChangeLabel : $wrapper.find('.phrasing-image-discard-change-label'),
+    $fileInputLabel : $wrapper.find('.phrasing-image-edit-label').first(),
+    $discardChangeLabel : $wrapper.find('.phrasing-image-discard-change-label').first(),
     $wrapper : $wrapper,
-    $image : $wrapper.find('img.phrasable-image'),
-    $form : $wrapper.find('.phrasing-image-edit-form'),
-    $submitButton : $wrapper.find('.phrasing-image-submit-button')
+    $image : $wrapper.find('img.phrasable-image').first(),
+    $form : $wrapper.find('.phrasing-image-edit-form').first(),
+    $submitButton : $wrapper.find('.phrasing-image-submit-button').first()
   });
 };
 
