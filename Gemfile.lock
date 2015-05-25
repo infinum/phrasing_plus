@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    phrasing_plus (0.0.7)
+    phrasing_plus (0.0.8)
       carrierwave (~> 0.10.0)
       phrasing (~> 4.0.0rc5)
       rails (~> 4.2.1)
@@ -133,7 +133,7 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
-    sass (3.4.13)
+    sass (3.4.14)
     slop (3.6.0)
     sprockets (3.1.0)
       rack (~> 1.0)
