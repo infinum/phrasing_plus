@@ -27,13 +27,13 @@ rake db:migrate
 ### Include the required **javascript** file:
 
 ```javascript
-//= require phrasing
+//= require phrasing_plus
 ```
 
 ### Include the required **stylesheet** file:
 
 ```css
-*= require phrasing
+*= require phrasing_plus
 ```
 
 
