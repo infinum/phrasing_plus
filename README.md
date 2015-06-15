@@ -73,4 +73,12 @@ Example usage:
 <% end %>
 ```
 
+#### Uploading files to S3
+
+By default, PhrasingPlus will store data to your local filesystem. If you want to store them on let's say S3, do the following:
+
+1. Add 'fog' gem to your Gemfile
+2. Create an initializer and add `PhrasingPlus.storage = :fog`
+3. Configure Carrierwave to work with s3. Follow this [link](https://github.com/carrierwaveuploader/carrierwave/tree/v0.10.0#using-amazon-s3) for Carrierwave 0.10.0 (or switch tag version if you're using another version of Carrierwave).
+
 This project rocks and uses MIT-LICENSE.
