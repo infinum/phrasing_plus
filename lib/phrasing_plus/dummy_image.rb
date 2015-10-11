@@ -9,7 +9,7 @@ module PhrasingPlus
     end
 
     def url
-      "http://placehold.it/#{size}/#{BG_COLOR}/#{COLOR}"
+      "//placehold.it/#{size}/#{BG_COLOR}/#{COLOR}"
     end
 
     private
