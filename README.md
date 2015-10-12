@@ -2,6 +2,9 @@
 
 PhrasingPlus is a [Phrasing](github.com/infinum/phrasing) extension image inline editing. PhrasingPlus has a hard dependency on Phrasing version 4.0.0rc5, so please go through it's [Readme](https://github.com/infinum/phrasing/tree/new-release-4) before installing PhrasingPlus. PhrasingPlus is still in Experimental Alpha.
 
+[![Build Status](https://travis-ci.org/infinum/phrasing_plus.svg?branch=master)](https://travis-ci.org/infinum/phrasing_plus)
+[![Code Climate](https://codeclimate.com/github/infinum/phrasing_plus/badges/gpa.svg)](https://codeclimate.com/github/infinum/phrasing_plus)
+
 ## Installation
 
 
