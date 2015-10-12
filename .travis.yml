@@ -3,4 +3,5 @@ rvm:
   - 2.2.0
 
 before_script:
-  - rake db:setup
+  - rake db:create
+  - rake db:migrate
